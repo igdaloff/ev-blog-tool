@@ -1,4 +1,3 @@
-
 <template>
   <div class="isolate bg-white">
     <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -28,7 +27,7 @@
             </button>
           </div>
           <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
-           <!-- <a v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-gray-900">{{ item.name }}</a>-->
+            <!-- <a v-for="item in navigation" :key="item.name" :href="item.href" class="font-semibold text-gray-900 hover:text-gray-900">{{ item.name }}</a>-->
           </div>
           <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
             <!--<a href="#" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Log in</a>-->
@@ -66,7 +65,7 @@
     </div>
     <main>
       <div class="relative px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-8 ">
+        <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-8">
           <div>
             <div class="hidden sm:mb-8 sm:flex sm:justify-center">
               <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -79,7 +78,7 @@
               <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Write Less. Publish More.</h1>
               <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Publishly is an AI driven platform to help nonprofits create more content, quickly.</p>
               <div class="mt-8 flex gap-x-4 sm:justify-center">
-                <a href="/signup" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
+                <a href="/create-blog" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
                   Try Now{{ ' ' }}
                   <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                 </a>
