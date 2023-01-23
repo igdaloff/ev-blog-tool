@@ -18,7 +18,6 @@
     </main>
   </div>
   <div class="mx-auto bg-gray-50">
-    <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
     <div class="mx-auto max-w-3xl pt-12 pb-20">
       <form class="space-y-6" @submit.prevent="submitText">
         <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
@@ -41,10 +40,17 @@
               </div>
             </div>
           </div>
+          <div class="flex justify-start mt-8">
+            <button type="submit" class="rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+            <button type="submit" class="ml-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <span class="sr-only">Try again</span>
+              <ArrowPathIcon class="h-6 w-6 text-white" aria-hidden="true" />
+            </button>
+          </div>
         </div>
-        <div class="flex justify-end">
-          <button type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
-          <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+
+        <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
+          <p><strong>Generated Blog Post:</strong> {{ textOutput ? textOutput : '...' }}</p>
         </div>
 
         <!-- <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
@@ -80,7 +86,6 @@
           <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Generate Blog Posts</button>
         </div> -->
       </form>
-      <p>Response: {{ textOutput }}</p>
     </div>
   </div>
 
@@ -192,4 +197,8 @@ export default {
     },
   },
 }
+</script>
+
+<script setup>
+import { ArrowPathIcon } from '@heroicons/vue/24/outline'
 </script>
