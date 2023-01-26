@@ -55,7 +55,7 @@
         <div class="mt-5">
           <ul role="list" class="border-b">
             <li v-for="title in titleOutputs" :key="title.text" class="group border border-gray-200 border-b-0 relative bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
-              <a href="#" @click.prevent="submitTitleForBody" :data-titleInput="title.text" class="flex justify-between space-x-3 py-5 px-3">
+              <a href="#" @click.prevent="submitTitleForBody" :data-titleSelection="title.text" class="flex justify-between space-x-3 py-5 px-3">
                 <div class="min-w-0 flex-1">
                   <div class="flex focus:outline-none items-center">
                     <p class="truncate text-sm font-medium text-gray-900">{{ title.text }}</p>
@@ -87,7 +87,7 @@
         <div class="mt-5">
           <ul role="list" class="border-b">
             <li v-for="item in dummyPosts" :key="item.title" class="group border border-gray-200 border-b-0 relative bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
-              <a href="#" @click.prevent="submitTitleForBody" :data-titleInput="item.title" class="flex justify-between space-x-3 py-5 px-3">
+              <a href="#" @click.prevent="submitTitleForBody" :data-titleSelection="item.title" class="flex justify-between space-x-3 py-5 px-3">
                 <div class="min-w-0 flex-1">
                   <div class="flex focus:outline-none items-center">
                     <p class="truncate text-sm font-medium text-gray-900">{{ item.title }}</p>
@@ -114,19 +114,56 @@
 
       <!-- Step 3: View blog post output -->
       <div v-if="bodyOutput" class="bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Here's Your AI-Generated Blog Post!</h3>
-        <div class="relative pt-12">
-          <div class="mx-auto max-w-prose text-lg">
-            <h1>
-              <span class="block text-center text-lg font-semibold text-indigo-600">{{}}</span>
-              <span class="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">{{ titleInput }}</span>
-            </h1>
+        <div class="relative border-b border-gray-200 pb-5 sm:pb-0">
+          <div class="md:flex md:items-center md:justify-between pb-4">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Here's Your AI-Generated Blog Post!</h3>
+            <div class="flex ml-auto">
+              <a class="inline-flex items-center cursor-pointer rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Copy Text
+                <DocumentDuplicateIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
+              </a>
+              <a href="#" @click.prevent="submitTitleForBody" class="inline-flex items-center ml-3 rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Try Again
+                <ArrowPathIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
           </div>
-          <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
-            <p>{{ bodyOutput }}</p>
+        </div>
+        <div class="relative pt-12 px-8">
+          <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-700 blog-post">
+            <span class="text-sm block text-center">{{ todaysDate }} • Written by Author Name</span>
+            <h1 class="mt-2 text-center px-4">{{ titleSelection }}</h1>
+
+            <div v-html="bodyOutput"></div>
           </div>
         </div>
       </div>
+
+      <!-- Step 3 alt: View blog post output (this uses dummy data from below; uncomment for testing purposes)-->
+      <!-- <div v-if="dummyPosts" class="bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
+        <div class="relative border-b border-gray-200 pb-5 sm:pb-0">
+          <div class="md:flex md:items-center md:justify-between pb-4">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Here's Your AI-Generated Blog Post!</h3>
+            <div class="flex ml-auto">
+              <a class="inline-flex items-center cursor-pointer rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Copy Text
+                <DocumentDuplicateIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
+              </a>
+              <a href="#" @click.prevent="submitTitleForBody" class="inline-flex items-center ml-3 rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Try Again
+                <ArrowPathIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="relative pt-12 px-8">
+          <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-700 blog-post">
+            <span class="text-sm block text-center">January 25, 2023 • Written by Author Name</span>
+            <h1 class="mt-2 text-center px-4">{{ dummyPosts[0].title }}</h1>
+            <div v-html="dummyPosts[0].description"></div>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -141,12 +178,13 @@ export default {
       subjectInput: '',
       keywordsInput: '',
       titleOutputs: [],
-      titleInput: '',
+      titleSelection: '',
       bodyOutput: '',
+      todaysDate: '',
       dummyPosts: [
         {
           title: '5 Ways You Can Help Save the Children Today',
-          description: 'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+          description: '<p>Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta. Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo.</p><p>Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>',
         },
         {
           title: 'The Impact of Covid-19 on Children in Developing Countries',
@@ -185,16 +223,21 @@ export default {
         })
     },
     submitTitleForBody(e) {
-      this.titleInput = e.currentTarget.getAttribute('data-titleInput').replace(/["]+/g, '')
+      this.titleSelection = e.currentTarget.getAttribute('data-titleSelection').replace(/["]+/g, '')
+
+      // Get today's date for byline
+      let dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+      let today = new Date()
+      this.todaysDate = today.toLocaleDateString('en-US', dateOptions)
 
       const client = axios.create({
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Write a blog post about ' + this.subjectInput + ' that has a headline of ' + this.titleInput.replace(/["]+/g, '') + ' and use a numbered list or bullets for part of the text',
+        prompt: 'Write a blog post body in HTML about ' + this.subjectInput + ' and use numbered list or bullets, as necessary, for part of the text',
         model: 'text-davinci-003',
         temperature: 0.5,
-        max_tokens: 600,
+        max_tokens: 1200,
       }
       client
         .post('https://api.openai.com/v1/completions', params)
@@ -210,5 +253,5 @@ export default {
 </script>
 
 <script setup>
-import { ArrowPathIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
+import { ArrowPathIcon, ArrowRightIcon, DocumentDuplicateIcon } from '@heroicons/vue/24/outline'
 </script>

@@ -7,3 +7,8 @@ body,
 #app {
   height: 100%;
 }
+
+.blog-post p,
+.blog-post li {
+  font-family: Georgia, serif;
+}
