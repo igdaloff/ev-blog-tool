@@ -137,7 +137,7 @@
         <div class="relative pt-12 px-8">
           <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-700 blog-post">
             <span class="text-sm block text-center">{{ bodyLoading ? "Today's Date" : todaysDate }} • Written by Author Name</span>
-            <h1 class="mt-2 text-center px-4">{{ bodyLoading ? 'Blog Post Title' : titleSelection }}</h1>
+            <h1 class="mt-2 text-center px-3">{{ titleSelection }}</h1>
             <div v-html="bodyOutput"></div>
             <p v-if="bodyLoading">{{ loadingBodyCopy }}</p>
           </div>
@@ -257,10 +257,10 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Write a blog post body in HTML about ' + this.subjectInput,
+        prompt: 'Write a blog post body in HTML about ' + this.subjectInput + ' using around 500 words, and exclude a title',
         model: 'text-davinci-003',
         temperature: 0.5,
-        max_tokens: 2000,
+        max_tokens: 3000,
       }
       client
         .post('https://api.openai.com/v1/completions', params)
