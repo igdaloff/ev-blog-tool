@@ -169,10 +169,10 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Write a blog post title about ' + this.subjectInput + ' and include the words ' + this.keywordsInput,
+        prompt: 'Write a blog post headline about ' + this.subjectInput + ' and include the words ' + this.keywordsInput,
         model: 'text-davinci-003',
         temperature: 0.5,
-        max_tokens: 100,
+        max_tokens: 60,
         n: 4,
       }
       client
@@ -191,10 +191,10 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Write a blog post about ' + this.subjectInput + ' that has a title of ' + this.titleInput.replace(/["]+/g, ''),
+        prompt: 'Write a blog post about ' + this.subjectInput + ' that has a headline of ' + this.titleInput.replace(/["]+/g, '') + ' and use a numbered list or bullets for part of the text',
         model: 'text-davinci-003',
         temperature: 0.5,
-        max_tokens: 2000,
+        max_tokens: 600,
       }
       client
         .post('https://api.openai.com/v1/completions', params)
