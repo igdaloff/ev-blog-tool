@@ -5,9 +5,9 @@
       <div>
         <nav class="flex h-9 items-center justify-between" aria-label="Global">
           <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-            <a href="#" class="-m-1.5 p-1.5">
+            <a href="/" class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
-              <img class="h-48 pt-14" src="@/assets/images/logo.png"/>
+             <img class="h-48 pt-14" src="@/assets/images/logo.png"/>
             </a>
           </div>
           <div class="flex lg:hidden">
