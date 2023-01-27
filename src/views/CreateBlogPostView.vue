@@ -29,14 +29,14 @@
               <div>
                 <label for="about" class="block text-sm font-medium text-gray-700">What should the blog post be about?</label>
                 <div class="mt-1">
-                  <textarea type="text" v-model="subjectInput" name="subjectInput" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Giving Tuesday" />
+                  <textarea type="text" v-model="subjectInput" name="subjectInput" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="How Save the Children raised $10 million dollars this year from our generous donors and it helped provide 300 meals to kids in need." />
                 </div>
               </div>
 
               <div>
-                <label for="about" class="block text-sm font-medium text-gray-700">What are some keywords you'd like to include in the title?</label>
+                <label for="about" class="block text-sm font-medium text-gray-700">What are keywords would you like to include in the title?</label>
                 <div class="mt-1">
-                  <input type="text" v-model="keywordsInput" name="keywordsInput" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="donors, panda" />
+                  <input type="text" v-model="keywordsInput" name="keywordsInput" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Seperate keywords with commas" />
                 </div>
               </div>
             </div>
