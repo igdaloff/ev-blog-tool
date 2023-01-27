@@ -5,7 +5,7 @@
       <div>
         <nav class="flex h-9 items-center justify-between" aria-label="Global">
           <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-            <a href="/" class="-m-1.5 p-1.5">
+            <a href="/" class="h-48">
               <span class="sr-only">Your Company</span>
              <img class="h-48 pt-14" src="@/assets/images/logo.png"/>
             </a>
@@ -57,7 +57,7 @@
       <div class="relative px-6 lg:px-8">
         <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-8">
           <div>
-            <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div v-if="isHomeRoute" class="hidden sm:mb-8 sm:flex sm:justify-center">
               <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                 <span class="text-gray-600">
                   An Effectual Ventures creation. <a href="https://www.effectualventures.co/studio" class="font-semibold text-sky-600" target="_blank"><span class="absolute inset-0" aria-hidden="true" />Learn more <span aria-hidden="true">&rarr;</span></a>
@@ -67,7 +67,7 @@
             <div>
               <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Write Less. Publish More.</h1>
               <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Scrybe is an AI driven platform to help nonprofits create more content, quickly.</p>
-              <div class="mt-8 flex gap-x-4 sm:justify-center">
+              <div v-if="isHomeRoute" class="mt-8 flex gap-x-4 sm:justify-center">
                 <a href="/create-blog" class="inline-block rounded-lg bg-sky-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-sky-600 hover:bg-sky-700 hover:ring-sky-700">
                   Try Now{{ ' ' }}
                   <span class="text-sky-200" aria-hidden="true">&rarr;</span>
@@ -88,6 +88,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { router } from 'vue-router'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
@@ -97,4 +98,16 @@ const navigation = [
 ]
 
 const mobileMenuOpen = ref(false)
+</script>
+
+<script>
+import { router } from 'vue-router'
+
+export default {
+  computed: {
+    isHomeRoute() {
+      return this.$route.path === '/'
+    }
+  }
+}
 </script>

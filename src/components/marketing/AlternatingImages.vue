@@ -29,7 +29,7 @@
 
         <div class="mt-12 sm:mt-16 lg:mt-0">
           <div class="-mr-48 pl-4 sm:pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-            <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-half lg:w-half lg:max-w-none" src="@/assets/images/image_2.png" alt="Inbox user interface" />
+            <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-auto lg:w-half lg:max-w-none" src="@/assets/images/image_2.png" alt="Inbox user interface" />
           </div>
         </div>
                 <div class="mx-auto max-w-xl px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
