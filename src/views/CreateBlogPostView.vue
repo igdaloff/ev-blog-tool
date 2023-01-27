@@ -227,7 +227,7 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Write a blog post headline about ' + this.subjectInput + ' and include the words ' + this.keywordsInput,
+        prompt: 'Pretend you are a copy writer. Write a blog post headline about ' + this.subjectInput + ' and include the keywords ' + this.keywordsInput,
         model: 'text-davinci-003',
         temperature: 0.5,
         max_tokens: 60,
