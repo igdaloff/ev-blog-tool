@@ -1,21 +1,5 @@
 <template>
-  <div class="isolate bg-white">
-    <main>
-      <div class="px-10 lg:px-8">
-        <div class="mx-auto max-w-3xl pt-20 pb-20">
-          <div>
-            <div class="hidden sm:mb-8 sm:flex sm:justify-center"></div>
-            <div>
-              <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                Let's get started!
-              </h1>
-              <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Fill out the information below to produce your content.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
+  <Hero />
   <div class="mx-auto bg-gray-50">
     <div class="mx-auto max-w-3xl pt-12 pb-20">
       <!-- Step 1: Enter basic info -->
@@ -185,6 +169,7 @@
 
 <script>
 import axios from 'axios'
+import Hero from '../components/marketing/Hero'
 
 export default {
   data() {
