@@ -1,5 +1,5 @@
 <template>
-  <div class="isolate bg-white">
+  <div class="isolate bg-gray-100">
 
     <div class="px-6 pt-6 lg:px-8">
       <div>
@@ -7,7 +7,7 @@
           <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
             <a href="#" class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
-              <img class="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+              <img class="h-48 pt-14" src="@/assets/images/logo.png"/>
             </a>
           </div>
           <div class="flex lg:hidden">
@@ -29,7 +29,7 @@
               <div class="flex">
                 <a href="#" class="-m-1.5 p-1.5">
                   <span class="sr-only">Your Company</span>
-                  <img class="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                  <img class="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=sky&shade=600" alt="" />
                 </a>
               </div>
               <div class="flex">
@@ -60,22 +60,22 @@
             <div class="hidden sm:mb-8 sm:flex sm:justify-center">
               <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                 <span class="text-gray-600">
-                  An Effectual Ventures creation. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true" />Learn more <span aria-hidden="true">&rarr;</span></a>
+                  An Effectual Ventures creation. <a href="https://www.effectualventures.co/studio" class="font-semibold text-sky-600" target="_blank"><span class="absolute inset-0" aria-hidden="true" />Learn more <span aria-hidden="true">&rarr;</span></a>
                 </span>
               </div>
             </div>
             <div>
               <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Write Less. Publish More.</h1>
-              <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Publishly is an AI driven platform to help nonprofits create more content, quickly.</p>
+              <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Scrybe is an AI driven platform to help nonprofits create more content, quickly.</p>
               <div class="mt-8 flex gap-x-4 sm:justify-center">
-                <a href="/create-blog" class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
+                <a href="/create-blog" class="inline-block rounded-lg bg-sky-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-sky-600 hover:bg-sky-700 hover:ring-sky-700">
                   Try Now{{ ' ' }}
-                  <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
+                  <span class="text-sky-200" aria-hidden="true">&rarr;</span>
                 </a>
-                <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            <!--    <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                   Live demo{{ ' ' }}
                   <span class="text-gray-400" aria-hidden="true">&rarr;</span>
-                </a>
+                </a>-->
               </div>
             </div>
 

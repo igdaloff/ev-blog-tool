@@ -3,7 +3,7 @@
   <SimpleCentered />
   <AlternatingImages />
   <SimpleCenteredBranded />
-  <NewsletterSignup />
+  
 </template>
 
 <script setup>
