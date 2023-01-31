@@ -106,10 +106,6 @@
         <div v-if="bodyOutput" class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
             <div class="flex ml-auto">
-              <a class="inline-flex items-center cursor-pointer rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-                Copy Text
-                <DocumentDuplicateIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
-              </a>
               <a href="#" @click.prevent="submitTitleForBody" class="inline-flex items-center ml-3 rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                 Try Again
                 <ArrowPathIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
@@ -211,10 +207,10 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey },
       })
       const params = {
-        prompt: 'Pretend you are a copy writer. Write a blog post headline about ' + this.subjectInput + ' and include the following keywords: ' + this.keywordsInput,
         model: 'text-davinci-003',
-        temperature: 0.5,
-        max_tokens: 60,
+        prompt: 'The following are some keywords and a topic for an AI assistant to use for writing a blog post title. As the AI assistant, pretend you are a friendly, creative, smart copywriter. Write a blog post title about the following topic and use the following keyword(s). Topic: ' + this.subjectInput + '. Keyword(s): ' + this.keywordsInput + ' The blog post title should be surrounded by quotes and should have between 5 and 15 words.',
+        max_tokens: 50,
+        temperature: 1,
         n: 4,
       }
       client
