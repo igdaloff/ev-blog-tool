@@ -102,7 +102,7 @@
       </div> -->
 
       <!-- Step 4: View blog post output -->
-      <div v-if="bodyLoading || bodyOutput" class="relative overflow-hidden bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
+      <div v-if="bodyLoading || bodyOutput" class="relative bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
         <div v-if="bodyOutput" class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
             <div class="flex ml-auto">
@@ -121,7 +121,7 @@
             <p v-if="bodyLoading">{{ loadingBodyCopy }}</p>
           </div>
         </div>
-        <div v-if="bodyLoading && !emailSubmitted" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
+        <div v-if="!emailSubmitted" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
         <div v-if="bodyLoading" role="status" class="absolute flex align-middle -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
           <div class="text-center">
             <em class="block">Scrybe AI is writing your blog post.<br />This may take a few seconds...</em>
@@ -133,7 +133,7 @@
           </div>
         </div>
         <!-- Email overlay -->
-        <form v-if="bodyLoaded && !emailSubmitted" method="POST" action="https://script.google.com/macros/s/AKfycbyaF8Ci7F0s7E8c7yAiEKKnn_W13Bw-E8Z4cXAunwbCPVnFgSVLTja71Zh39xPqczOe/exec" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4" @submit.prevent="submitEmail">
+        <form v-if="bodyLoaded && !emailSubmitted" method="POST" @submit.prevent="submit" action="https://script.google.com/macros/s/AKfycbyaF8Ci7F0s7E8c7yAiEKKnn_W13Bw-E8Z4cXAunwbCPVnFgSVLTja71Zh39xPqczOe/exec" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4">
           <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6 justify-center">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Enter Your Email Address to View AI-Generated Blog Post</h3>
             <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
@@ -195,6 +195,7 @@ export default {
       titleSelection: '',
       bodyOutput: '',
       todaysDate: '',
+      email: '',
       titlesLoading: false,
       bodyLoading: false,
       bodyLoaded: false,
@@ -273,7 +274,8 @@ export default {
           console.log(err)
         })
     },
-    submitEmail() {
+    submit() {
+      this.$emit('submit', this.email)
       this.emailSubmitted = true
     },
   },
