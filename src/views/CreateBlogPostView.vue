@@ -101,7 +101,7 @@
         </div>
       </div> -->
 
-      <!-- Step 3: View blog post output -->
+      <!-- Step 4: View blog post output -->
       <div v-if="bodyLoading || bodyOutput" class="relative overflow-hidden bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
         <div v-if="bodyOutput" class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
@@ -121,10 +121,10 @@
             <p v-if="bodyLoading">{{ loadingBodyCopy }}</p>
           </div>
         </div>
-        <div v-if="bodyLoading" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
+        <div v-if="bodyLoading && !emailSubmitted" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
         <div v-if="bodyLoading" role="status" class="absolute flex align-middle -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
           <div class="text-center">
-            <em class="block">We're generating your blog post...</em>
+            <em class="block">Scrybe AI is writing your blog post.<br />This may take a few seconds...</em>
             <svg aria-hidden="true" class="inline-block w-12 h-12 mt-4 text-gray-300 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
               <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#4f46e5" />
@@ -132,9 +132,27 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div>
+        <!-- Email overlay -->
+        <form v-if="bodyLoaded && !emailSubmitted" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4" @submit.prevent="submitEmail">
+          <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6 justify-center">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Enter Your Email Address to View AI-Generated Blog Post</h3>
+            <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
+              <div class="mt-5 space-y-6 md:col-span-2 md:mt-0">
+                <div>
+                  <div class="mt-1">
+                    <input type="email" v-model="email" name="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm" placeholder="email@email.com" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-start mt-8">
+              <button type="submit" class="flex items-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Submit and View Blog Post</button>
+            </div>
+          </div>
+        </form>
       </div>
 
-      <!-- Step 3 alt: View blog post output (this uses dummy data from below; uncomment for testing purposes)-->
+      <!-- Step 4 alt: View blog post output (this uses dummy data from below; uncomment for testing purposes)-->
       <!-- <div v-if="dummyPosts" class="bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
         <div class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
@@ -179,6 +197,8 @@ export default {
       todaysDate: '',
       titlesLoading: false,
       bodyLoading: false,
+      bodyLoaded: false,
+      emailSubmitted: false,
       loadingBodyCopy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       dummyPosts: [
         {
@@ -247,10 +267,14 @@ export default {
         .then((result) => {
           this.bodyOutput = result.data.choices[0].text
           this.bodyLoading = false
+          this.bodyLoaded = true
         })
         .catch((err) => {
           console.log(err)
         })
+    },
+    submitEmail() {
+      this.emailSubmitted = true
     },
   },
 }
