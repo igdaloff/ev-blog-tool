@@ -1,13 +1,14 @@
 <template>
   <div class="isolate bg-gray-100">
-
     <div class="px-6 pt-6 lg:px-8">
       <div>
         <nav class="flex h-9 items-center justify-between" aria-label="Global">
           <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
+
             <a href="/" class="pt-16">
               <span class="sr-only h-32">Your Company</span>
              <img class="h-32" src="@/assets/images/logo.png"/>
+
             </a>
           </div>
           <div class="flex lg:hidden">
@@ -72,13 +73,12 @@
                   Try Now{{ ' ' }}
                   <span class="text-sky-200" aria-hidden="true">&rarr;</span>
                 </a>
-            <!--    <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                <!--    <a href="#" class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                   Live demo{{ ' ' }}
                   <span class="text-gray-400" aria-hidden="true">&rarr;</span>
                 </a>-->
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -88,7 +88,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import { router } from 'vue-router'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
@@ -101,13 +100,11 @@ const mobileMenuOpen = ref(false)
 </script>
 
 <script>
-import { router } from 'vue-router'
-
 export default {
   computed: {
     isHomeRoute() {
       return this.$route.path === '/'
-    }
-  }
+    },
+  },
 }
 </script>
