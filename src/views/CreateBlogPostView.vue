@@ -133,7 +133,7 @@
           </div>
         </div>
         <!-- Email overlay -->
-        <form v-if="bodyLoaded && !emailSubmitted" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4" @submit.prevent="submitEmail">
+        <form v-if="bodyLoaded && !emailSubmitted" method="POST" action="https://script.google.com/macros/s/AKfycbyaF8Ci7F0s7E8c7yAiEKKnn_W13Bw-E8Z4cXAunwbCPVnFgSVLTja71Zh39xPqczOe/exec" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4" @submit.prevent="submitEmail">
           <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6 justify-center">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Enter Your Email Address to View AI-Generated Blog Post</h3>
             <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
