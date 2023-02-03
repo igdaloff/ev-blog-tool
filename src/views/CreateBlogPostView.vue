@@ -15,7 +15,6 @@
                   <textarea type="text" v-model="subjectInput" name="subjectInput" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm" placeholder="How Save the Children raised $10 million dollars this year from our generous donors and it helped provide 300 meals to kids in need." />
                 </div>
               </div>
-
               <div>
                 <label for="about" class="block text-sm font-medium text-gray-700">What are keywords would you like to include in the title?</label>
                 <div class="mt-1">
@@ -134,15 +133,21 @@
         </div>
         <!-- Email overlay -->
         <form v-if="bodyLoaded && !emailSubmitted" method="POST" @submit.prevent="submit" action="https://script.google.com/macros/s/AKfycbyaF8Ci7F0s7E8c7yAiEKKnn_W13Bw-E8Z4cXAunwbCPVnFgSVLTja71Zh39xPqczOe/exec" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4">
+
           <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6 justify-center">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Submit your email to view your AI generated blog post</h3>
             <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
               <div class="mt-5 space-y-6 md:col-span-2 md:mt-0">
-                <div>
+
+              <!-- Beehiv iframe -->
+                <iframe src="https://embeds.beehiiv.com/716b28bd-deb2-4570-8345-57faa39682d1?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent;"></iframe>
+              <!-- Beehiv iframe -->
+              
+                <!--<div>
                   <div class="mt-1">
                     <input type="email" v-model="email" name="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm" placeholder="email@email.com" />
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
             <div class="flex justify-start mt-8">
