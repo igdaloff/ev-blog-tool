@@ -101,7 +101,7 @@
       </div> -->
 
       <!-- Step 4: View blog post output -->
-      <div v-if="bodyLoading || bodyOutput" class="relative bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
+      <div v-show="bodyLoading || bodyOutput" class="relative bg-white px-4 py-5 mt-8 shadow sm:rounded-lg sm:p-6">
         <div v-if="bodyOutput" class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
             <div class="flex ml-auto">
@@ -132,15 +132,11 @@
           </div>
         </div>
         <!-- Email overlay -->
-        <form v-if="bodyLoaded && !emailSubmitted" id="emailForm" method="POST" action="https://script.google.com/macros/s/AKfycbx8-so2HIpbI7riAASaZ663Fv8LSSkqOrfHoBrFd-WLkBgOflcTGX3v6vlVyyOAEYQY/exec" target="hiddenFrame" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4">
+        <form v-show="bodyLoaded && !emailSubmitted" id="emailForm" method="POST" action="https://script.google.com/macros/s/AKfycbx8-so2HIpbI7riAASaZ663Fv8LSSkqOrfHoBrFd-WLkBgOflcTGX3v6vlVyyOAEYQY/exec" target="hiddenFrame" class="space-y-6 absolute top-60 left-0 right-0 m-auto w-3/4">
           <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6 justify-center">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Submit your email to view your AI generated blog post</h3>
             <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
               <div class="mt-5 space-y-6 md:col-span-2 md:mt-0">
-                <!-- Beehiv iframe -->
-                <!-- <iframe src="https://embeds.beehiiv.com/716b28bd-deb2-4570-8345-57faa39682d1?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent;"></iframe> -->
-                <!-- Beehiv iframe -->
-
                 <div>
                   <div class="mt-1">
                     <input name="Email" type="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm" placeholder="email@email.com" />
@@ -149,11 +145,11 @@
               </div>
             </div>
             <div class="flex justify-start mt-8">
-              <button type="submit" @click="emailSubmit" class="flex items-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Submit and View Blog Post</button>
+              <button type="submit" class="flex items-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">Submit and View Blog Post</button>
             </div>
           </div>
         </form>
-        <iframe name="hiddenFrame" class="hidden"></iframe>
+        <iframe name="hiddenFrame" id="hiddenFrame" class="w-[1px] h-[1px]"></iframe>
       </div>
 
       <!-- Step 4 alt: View blog post output (this uses dummy data from below; uncomment for testing purposes)-->
@@ -208,35 +204,35 @@ export default {
       dummyPosts: [
         {
           title: '5 Ways You Can Help Save the Children Today',
-          description: '<p>Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta. Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo.</p><p>Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>',
+          description: '<p>Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta. Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo.</p><p>Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>'
         },
         {
           title: 'The Impact of Covid-19 on Children in Developing Countries',
-          description: 'Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.',
+          description: 'Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.'
         },
         {
           title: 'Meet the Children Who Have Benefited from Save the Children Work',
-          description: 'Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis.',
+          description: 'Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis.'
         },
         {
           title: 'Why Education is Essential for Every Childs Future',
-          description: 'Ipsum voluptates quia doloremque culpa qui eius. Id qui id officia molestias quaerat deleniti. Qui facere numquam autem libero quae cupiditate asperiores vitae cupiditate. Cumque id deleniti explicabo.',
-        },
-      ],
+          description: 'Ipsum voluptates quia doloremque culpa qui eius. Id qui id officia molestias quaerat deleniti. Qui facere numquam autem libero quae cupiditate asperiores vitae cupiditate. Cumque id deleniti explicabo.'
+        }
+      ]
     }
   },
   methods: {
     submitTextForTitle() {
       this.titlesLoading = true
       const client = axios.create({
-        headers: { Authorization: 'Bearer ' + this.apiKey },
+        headers: { Authorization: 'Bearer ' + this.apiKey }
       })
       const params = {
         model: 'text-davinci-003',
         prompt: 'The following are some keywords and a topic for an AI assistant to use for writing a blog post title. As the AI assistant, pretend you are a friendly, creative, smart copywriter. Write a blog post title about the following topic and use the following keyword(s). Topic: ' + this.subjectInput + '. Keyword(s): ' + this.keywordsInput + ' The blog post title should be surrounded by quotes and should have between 5 and 15 words.',
         max_tokens: 50,
         temperature: 1,
-        n: 4,
+        n: 4
       }
       client
         .post('https://api.openai.com/v1/completions', params)
@@ -259,13 +255,13 @@ export default {
       this.todaysDate = today.toLocaleDateString('en-US', dateOptions)
 
       const client = axios.create({
-        headers: { Authorization: 'Bearer ' + this.apiKey },
+        headers: { Authorization: 'Bearer ' + this.apiKey }
       })
       const params = {
         prompt: 'Write a blog post body in HTML about ' + this.subjectInput + ' using around 500 words, and exclude a title',
         model: 'text-davinci-003',
         temperature: 0.5,
-        max_tokens: 3000,
+        max_tokens: 3000
       }
       client
         .post('https://api.openai.com/v1/completions', params)
@@ -279,22 +275,29 @@ export default {
         })
     },
     emailSubmit() {
-      window.addEventListener('load', function () {
-        const form = document.getElementById('emailForm')
-        form.addEventListener('submit', function (e) {
-          e.preventDefault()
-          const data = new FormData(form)
-          const action = e.target.action
-          fetch(action, {
-            method: 'POST',
-            body: data,
-          }).then(() => {
-            this.emailSubmitted = true
-          })
-        })
-      })
-    },
+      this.emailSubmitted = true
+    }
   },
+  mounted() {
+    window.addEventListener('load', () => {
+      const form = document.getElementById('emailForm')
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const data = new FormData(form)
+        const action = e.target.action
+        fetch(action, {
+          method: 'POST',
+          body: data
+        })
+          .then((response) => {
+            console.log(response)
+          })
+          .then(() => {
+            this.emailSubmit()
+          })
+      })
+    })
+  }
 }
 </script>
 
