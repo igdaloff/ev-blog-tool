@@ -16,7 +16,7 @@
                 </div>
               </div>
               <div>
-                <label for="about" class="block text-sm font-medium text-gray-700">What are keywords would you like to include in the title?</label>
+                <label for="about" class="block text-sm font-medium text-gray-700">What are keywords would you like to include in the blog post?</label>
                 <div class="mt-1">
                   <input type="text" v-model="keywordsInput" name="keywordsInput" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm" placeholder="Seperate keywords with commas" />
                 </div>
@@ -105,7 +105,7 @@
         <div v-if="bodyOutput" class="relative border-b border-gray-200 pb-5 sm:pb-0">
           <div class="md:flex md:items-center md:justify-between pb-4">
             <div class="flex ml-auto">
-              <a href="#" @click.prevent="submitTitleForBody" class="inline-flex items-center ml-3 rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+              <a href="#" @click.prevent="submitTitleForBody" :data-titleSelection="this.titleSelection" class="inline-flex items-center ml-3 rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                 Try Again
                 <ArrowPathIcon class="ml-3 -mr-1 h-5 w-5" aria-hidden="true" />
               </a>
@@ -120,7 +120,7 @@
             <p v-if="bodyLoading">{{ loadingBodyCopy }}</p>
           </div>
         </div>
-        <div v-if="!emailSubmitted" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
+        <div v-if="!emailSubmitted || bodyLoading" class="w-full h-full absolute left-0 right-0 bottom-0 top-0 bg-[rgba(255,255,255,0.95)]"></div>
         <div v-if="bodyLoading" role="status" class="absolute flex align-middle -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
           <div class="text-center">
             <em class="block">Scrybe AI is writing your blog post.<br />This may take a few seconds...</em>
@@ -229,9 +229,9 @@ export default {
       })
       const params = {
         model: 'text-davinci-003',
-        prompt: 'The following are some keywords and a topic for an AI assistant to use for writing a blog post title. As the AI assistant, pretend you are a friendly, creative, smart copywriter. Write a blog post title about the following topic and use the following keyword(s). Topic: ' + this.subjectInput + '. Keyword(s): ' + this.keywordsInput + ' The blog post title should be surrounded by quotes and should have between 5 and 15 words.',
+        prompt: 'The following is a topic for an AI assistant to use for writing a blog post title. As the AI assistant, pretend you are a friendly, creative, smart copywriter. Write a blog post title about the following topic: ' + this.subjectInput + '. The blog post title should be surrounded by quotes and should have between 5 and 15 words.',
         max_tokens: 50,
-        temperature: 1,
+        temperature: 0.9,
         n: 4
       }
       client
@@ -258,9 +258,9 @@ export default {
         headers: { Authorization: 'Bearer ' + this.apiKey }
       })
       const params = {
-        prompt: 'Write a blog post body in HTML about ' + this.subjectInput + ' using around 500 words, and exclude a title',
+        prompt: 'Write a blog post body in HTML about ' + this.subjectInput + ' that discusses topics including the words ' + this.keywordsInput + '. Write around 500 words and exclude a title.',
         model: 'text-davinci-003',
-        temperature: 0.5,
+        temperature: 0.7,
         max_tokens: 3000
       }
       client
